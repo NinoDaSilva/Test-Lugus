@@ -1,7 +1,8 @@
-.btn {
+.btn,
+.btn-size {
     background-color: var(--bleu);
     color: var(--blanc);
-    padding : 6px;  
+    padding : 8px;  
     padding-inline: 25px;  
     font-size: var(--sm);
     text-transform: uppercase;
@@ -10,8 +11,35 @@
     transition: all 0.3s ease-in-out;
 }
 
-.btn:focus {
+.btn-size {
+    padding-inline: 20px;
+}
+
+.btn:focus,
+.btn:hover,
+.btn-size:focus,
+.btn-size:hover {
     background-color: var(--blanc);
     color: var(--bleu);
     border: 1px solid var(--bleu);
+}
+
+.btn-quantity, 
+.quantity--block {
+    color: var(--blanc);
+    font-size: var(--2xl);
+    font-family: var(--secondary);
+    background-color: var(--bleu);
+    padding-inline: 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+.quantity--block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 3px;
+    height: 46px;
+    width: 129px;
+    padding-inline: 5px;
 }
