@@ -6,6 +6,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     align-items: center;
+    gap: 20px;
 }
 
 .footer--list-items {
@@ -22,4 +23,26 @@ footer {
 
 .footer--logo {
     justify-self: center;
+}
+
+@media (max-width: 768px) {
+    .footer--block {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        justify-items: center;
+    }
+    .footer--list {
+        margin-top: 10px;
+    }
+    .footer--credit {
+        margin-top: 40px;
+    }
+    .footer--logo {
+       display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer--logo-mobile {
+        display: none;
+     }
 }
