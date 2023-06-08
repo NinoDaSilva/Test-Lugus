@@ -1,3 +1,25 @@
 footer {
-    
+    display: grid;
+}
+
+.footer--block {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: center;
+}
+
+.footer--list-items {
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+.footer--credit {
+    justify-self: center;
+    margin-top: 110px;
+    color: var(--gris);
+    font-size: var(--3xs)
+}
+
+.footer--logo {
+    justify-self: center;
 }

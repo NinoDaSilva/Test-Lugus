@@ -4,6 +4,7 @@
     --bleuClair: #F6F8FC;
     --noir: #000000;
     --blanc: #FFFFFF;
+    --gris: #525252;
 
     /* Fonts */
     --main: 'Cabin', sans-serif; 
@@ -11,6 +12,7 @@
     --specific: 'Roboto', sans-serif;
 
     /* Font Size */
+    --3xs: 0.75rem; /* 12px */
     --2xs: 0.813rem; /* 13px */
     --xs: 0.875rem; /* 14px */ 
     --sm: 0.938rem; /* 15px */
