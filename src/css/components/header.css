@@ -1,5 +1,6 @@
 header {
     align-items: center;
+    transition: all 0.3s ease-in-out;
 }
 
 .header--block {
@@ -35,12 +36,12 @@ header {
     margin-left: 50px;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
     .header--block {
         display: grid;
         justify-content: space-between;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        padding-inline: 120px;
+        padding-inline: 20px;
     }
     .menu__nav-toggle {
         display: none;
@@ -53,7 +54,7 @@ header {
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
     header {
         padding: 10px;
     }
@@ -65,5 +66,11 @@ header {
     .icon-list--account,
     .header--block-desktop {
         display: none;
+    }
+}
+
+@media (min-width: 1024px) {
+    .header--block {
+        padding-inline: 120px;
     }
 }
