@@ -1,0 +1,22 @@
+:root {
+    /* Colors */
+    --bleu: #4374EF;
+    --bleuClair: #F6F8FC;
+    --noir: #000000;
+    --blanc: #FFFFFF;
+
+    /* Fonts */
+    --main: 'Cabin', sans-serif; 
+    --secondary: 'Fjalla One', sans-serif;
+    --specific: 'Roboto', sans-serif;
+
+    /* Font Size */
+    --2xs: 0.813rem; /* 13px */
+    --xs: 0.875rem; /* 14px */ 
+    --sm: 0.938rem; /* 15px */
+    --base: 1rem; 
+    --lg: 1.125rem; /* 18px */
+    --xl: 1.25rem; /* 20px */
+    --2xl: 1.563rem; /* 25px */
+    --3xl: 1.875rem; /* 30px */
+}
