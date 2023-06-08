@@ -1,7 +1,8 @@
 .btn,
 .btn-size,
 .btn-white,
-.btn-blue {
+.btn-blue,
+.quantity {
     background-color: var(--bleu);
     color: var(--blanc);
     padding : 8px;  
@@ -13,13 +14,27 @@
     transition: all 0.3s ease-in-out;
 }
 
+.quantity {
+    border: none;
+    width: 100%;
+    appearance: none;
+    padding-inline: 0;
+    text-align: center;
+    font-size: var(--xl);
+    font-family: var(--secondary);
+}
+
+.quantity:focus {
+    outline: none;
+}
+
 .btn-size {
     padding-inline: 20px;
 }
 
-.btn:focus,
+.btn.selected,
 .btn:hover,
-.btn-size:focus,
+.btn-size.selected,
 .btn-size:hover,
 .btn-white,
 .btn-blue:hover {

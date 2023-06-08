@@ -39,6 +39,14 @@ button {
     cursor: pointer;
 }
 
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
 #productPrice {
     color: var(--bleu);
@@ -61,6 +69,12 @@ button {
     display: grid;
     margin-top: 20px;
     margin-bottom: 50px;
+    transition: 300ms ease-in-out;
+}
+
+.poduct--img-block:hover {
+    transform: skew(0deg, -8deg);
+    transition: 300ms ease-in-out;
 }
 
 .product--block {

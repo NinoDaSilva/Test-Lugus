@@ -42,8 +42,6 @@ async function getProductId() {
   });
 }
 
-const productId = getProductId();
-
 // Récupération du titre du produit
   getData()
   .then((productData) => {
@@ -74,25 +72,106 @@ const productId = getProductId();
     console.error(error);
   });
 
-// Récupération des variants du produit
+// Récupération de l'img du produit
   getData()
   .then((productData) => {
-    const productVariants = productData.variants;
-    return productVariants;
-    console.log(productVariants);
+    const productColor = productData.variants.map((variant) => variant.color);
+    const productSize = productData.variants.map((variant) => variant.size);
+
+    const selectedColor = productColor[0]; 
+    const selectedSize = productSize[0]; 
+
+    const matchingVariants = productData.variants.filter(
+      (variant) => variant.color === selectedColor && variant.size === selectedSize
+    );
+
+    if (matchingVariants.length > 0) {
+      const selectedVariant = matchingVariants[0];
+      console.log(matchingVariants);
+      
+      document.getElementById("productImg").src = selectedVariant.image;
+    }
   })
   .catch((error) => {
     console.error(error);
   });
 
-// Récupération de l'url de l'img du produit
+// Récupération des images du produit selon la taille et la couleur
  getData()
  .then((productData) => {
-   const productImage = productData.variants.map((variant) => variant.image);
-   document.getElementById("productImg").src = productImage;
-   return productImage;
+   const colorButtons = document.querySelectorAll(".btn");
+   const sizeButtons = document.querySelectorAll(".btn-size");
+
+   colorButtons.forEach((button) => {
+     button.addEventListener("click", () => {
+      colorButtons.forEach((btn) => btn.classList.remove("selected"));
+      button.classList.add("selected");
+
+       const selectedColor = button.dataset.color;
+      
+       const matchingVariants = productData.variants.filter(
+         (variant) => variant.color === selectedColor && variant.size === getSelectedSize()
+       );
+
+       if (matchingVariants.length > 0) {
+         const selectedVariant = matchingVariants[0]; 
+
+         document.getElementById("productImg").src = selectedVariant.image;
+         console.log(selectedVariant);
+       }
+     });
+   });
+
+   sizeButtons.forEach((button) => {
+     button.addEventListener("click", () => {
+      sizeButtons.forEach((btn) => btn.classList.remove("selected"));
+      button.classList.add("selected");
+
+       const selectedSize = button.dataset.size;
+
+       const matchingVariants = productData.variants.filter(
+         (variant) => variant.size === selectedSize && variant.color === getSelectedColor()
+       );
+        
+       if (matchingVariants.length > 0) {
+         const selectedVariant = matchingVariants[0]; 
+         
+         document.getElementById("productImg").src = selectedVariant.image;
+         console.log(selectedVariant);
+       }
+     });
+   });
+
+   // Fonction pour obtenir la couleur actuellement sélectionnée
+   function getSelectedColor() {
+     const selectedColorButton = document.querySelector(".btn.selected");
+     return selectedColorButton ? selectedColorButton.dataset.color : null;
+   }
+   // Fonction pour obtenir la taille actuellement sélectionnée
+   function getSelectedSize() {
+     const selectedSizeButton = document.querySelector(".btn-size.selected");
+     return selectedSizeButton ? selectedSizeButton.dataset.size : null;
+    }
  })
  .catch((error) => {
    console.error(error);
  });
-  
+
+
+// //
+// const decreaseBtn = document.getElementById("decreaseBtn");
+// const increaseBtn = document.getElementById("increaseBtn");
+// const numberField = document.getElementById("numberField");
+// // Fonction pour diminuer la valeur du champ
+// decreaseBtn.addEventListener("click", () => {
+//   let currentValue = parseInt(numberField.value);
+//   if (currentValue > 0) {
+//     numberField.value = --currentValue;
+//   }
+// });
+
+// // Fonction pour augmenter la valeur du champ
+// increaseBtn.addEventListener("click", () => {
+//   let currentValue = parseInt(numberField.value);
+//   numberField.value = ++currentValue;
+// });

@@ -100,18 +100,18 @@
                 <span id="productPrice"></span>
                 <div class="product--option-block">
                     <p class="product--label">Couleur</p>
-                    <button class="btn">Bleu</button>
-                    <button class="btn">Jaune</button>
+                    <button id="colorBtnBlue" data-color="Blue" class="btn selected">Blue</button>
+                    <button id="colorBtnYellow" data-color="Yellow" class="btn">Yellow</button>
                 </div>
                 <div class="product--option-block">
                     <p class="product--label">Taille</p>
-                    <button class="btn-size">M</button>
-                    <button class="btn-size">L</button>
+                    <button id="sizeBtnM" data-size="M" class="btn-size selected">M</button>
+                    <button id="sizeBtnL" data-size="L" class="btn-size">L</button>
                 </div>
                 <div class="quantity--block">
-                    <button class="btn-quantity">-</button>
-                    <span class="quantity">1</span>
-                    <button class="btn-quantity">+</button>
+                    <button id="decreaseBtn" class="btn-quantity">-</button>
+                    <input type="number" id="numberField" value="1" max="10" maxlength="2" class="quantity">
+                    <button id="increaseBtn" class="btn-quantity">+</button>
                 </div>
                 <p id="productDescription"></p>
                 <div class="product--sell-block">
