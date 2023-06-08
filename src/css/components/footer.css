@@ -1,5 +1,7 @@
 footer {
     display: grid;
+    padding-bottom: 60px;
+    margin-top: 250px;
 }
 
 .footer--block {
@@ -26,6 +28,9 @@ footer {
 }
 
 @media (max-width: 768px) {
+    footer {
+        margin-top: 100px;
+    }
     .footer--block {
         grid-template-columns: repeat(1, minmax(0, 1fr));
         justify-items: center;

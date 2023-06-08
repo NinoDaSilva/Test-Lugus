@@ -7,11 +7,13 @@ async function getData() {
     request.onload = () => {
       if (request.status === 200) {
         const Data = JSON.parse(request.responseText);
-        const titles = Data.title;
-        const price = Data.price;
-        const description = Data.description;
+        // const titles = Data.title;
+        // const price = Data.price;
+        // const description = Data.description;
+        // const variants = Data.variants;
+        // const images = Data.variants.map((variant) => variant.image);
 
-        resolve(Data, titles, price, description);
+        resolve(Data);
       } else {
         reject("Erreur lors de la récupération des données du produit");
       }
@@ -62,7 +64,7 @@ const productId = getProductId();
     console.error(error);
   });
 
-// Récupération du prix du produit
+// Récupération de la description du produit
   getData()
   .then((productData) => {
     const productDescription = productData.description;
@@ -72,12 +74,25 @@ const productId = getProductId();
     console.error(error);
   });
 
-// Récupération de l'url de l'img du produit
+// Récupération des variants du produit
   getData()
   .then((productData) => {
-    const productImage = productData.image;
-    document.getElementById("productImg").textContent = productImage;
+    const productVariants = productData.variants;
+    return productVariants;
+    console.log(productVariants);
   })
   .catch((error) => {
     console.error(error);
   });
+
+// Récupération de l'url de l'img du produit
+ getData()
+ .then((productData) => {
+   const productImage = productData.variants.map((variant) => variant.image);
+   document.getElementById("productImg").src = productImage;
+   return productImage;
+ })
+ .catch((error) => {
+   console.error(error);
+ });
+  
