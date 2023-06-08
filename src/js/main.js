@@ -157,8 +157,6 @@ async function getProductId() {
    console.error(error);
  });
 
-
-// //
 // const decreaseBtn = document.getElementById("decreaseBtn");
 // const increaseBtn = document.getElementById("increaseBtn");
 // const numberField = document.getElementById("numberField");
