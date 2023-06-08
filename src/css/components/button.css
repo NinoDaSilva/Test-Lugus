@@ -1,0 +1,17 @@
+.btn {
+    background-color: var(--bleu);
+    color: var(--blanc);
+    padding : 6px;  
+    padding-inline: 25px;  
+    font-size: var(--sm);
+    text-transform: uppercase;
+    font-family: var(--main);
+    border-radius: 45px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn:focus {
+    background-color: var(--blanc);
+    color: var(--bleu);
+    border: 1px solid var(--bleu);
+}
