@@ -1,5 +1,7 @@
 .btn,
-.btn-size {
+.btn-size,
+.btn-white,
+.btn-blue {
     background-color: var(--bleu);
     color: var(--blanc);
     padding : 8px;  
@@ -18,7 +20,9 @@
 .btn:focus,
 .btn:hover,
 .btn-size:focus,
-.btn-size:hover {
+.btn-size:hover,
+.btn-white,
+.btn-blue:hover {
     background-color: var(--blanc);
     color: var(--bleu);
     border: 1px solid var(--bleu);
@@ -42,4 +46,25 @@
     height: 46px;
     width: 129px;
     padding-inline: 5px;
+    margin-top: 37px;
+    margin-bottom: 39px;
+}
+
+.btn-white,
+.btn-blue {
+    border-radius: 3px;
+    padding: 15px;
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: var(--base);
+}
+
+.btn-white:hover {
+    background-color: var(--bleu);
+    color: var(--blanc);
+}
+
+.btn-size,
+.btn {
+    margin-right: 8px;
 }

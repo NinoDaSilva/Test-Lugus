@@ -91,29 +91,35 @@
     </header>
 
     <main>
-        <div>
-            <img id="productImg" src="" alt="photo produit">
-        </div>
-
-        <div>
-            <h1>The Collection Snowboard : <span id="productTitle"></span></h1>
-            <span id="productPrice"></span>
+        <section class="product--block">
             <div>
-                <p>Couleur</p>
-                <button class="btn">Bleu</button>
-                <button class="btn">Jaune</button>
+                <img id="productImg" src="" alt="photo produit">
             </div>
             <div>
-                <p>Taille</p>
-                <button class="btn-size">M</button>
-                <button class="btn-size">L</button>
+                <h1>The Collection Snowboard : <span id="productTitle"></span></h1>
+                <span id="productPrice"></span>
+                <div class="product--option-block">
+                    <p class="product--label">Couleur</p>
+                    <button class="btn">Bleu</button>
+                    <button class="btn">Jaune</button>
+                </div>
+                <div class="product--option-block">
+                    <p class="product--label">Taille</p>
+                    <button class="btn-size">M</button>
+                    <button class="btn-size">L</button>
+                </div>
+                <div class="quantity--block">
+                    <button class="btn-quantity">-</button>
+                    <span class="quantity">1</span>
+                    <button class="btn-quantity">+</button>
+                </div>
+                <p id="productDescription"></p>
+                <div class="product--sell-block">
+                    <button class="btn-white">Ajouter au panier</button>
+                    <button class="btn-blue">acheter maintenant</button>
+                </div>
             </div>
-            <div class="quantity--block">
-                <button class="btn-quantity">-</button>
-                <span class="quantity">1</span>
-                <button class="btn-quantity">+</button>
-            </div>
-        </div>
+        </section>
     </main>
 
     <footer>

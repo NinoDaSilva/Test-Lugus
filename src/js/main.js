@@ -56,7 +56,7 @@ const productId = getProductId();
   getData()
   .then((productData) => {
     const productPrice = productData.price;
-    document.getElementById("productPrice").textContent = productPrice;
+    document.getElementById("productPrice").textContent = productPrice + " €";
   })
   .catch((error) => {
     console.error(error);
@@ -67,6 +67,16 @@ const productId = getProductId();
   .then((productData) => {
     const productDescription = productData.description;
     document.getElementById("productDescription").textContent = productDescription;
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+// Récupération de l'url de l'img du produit
+  getData()
+  .then((productData) => {
+    const productImage = productData.image;
+    document.getElementById("productImg").textContent = productImage;
   })
   .catch((error) => {
     console.error(error);
