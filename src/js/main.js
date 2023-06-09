@@ -158,23 +158,25 @@ async function getProductId() {
  });
 
 // Fonction pour la quantité du produit a acheter
-async function getQuantity() {
+document.addEventListener("DOMContentLoaded", () => {
   const decreaseBtn = document.getElementById("decreaseBtn");
   const increaseBtn = document.getElementById("increaseBtn");
   const numberField = document.getElementById("numberField");
+  let currentValue = parseInt(numberField.value);
+  console.log(currentValue);
 
   decreaseBtn.addEventListener("click", () => {
-    let currentValue = parseInt(numberField.value);
-    if (currentValue > 0) {
+    if (currentValue > 1) {
       numberField.value = --currentValue;
     }
   });
 
   increaseBtn.addEventListener("click", () => {
-    let currentValue = parseInt(numberField.value);
-    numberField.value = ++currentValue;
+    if (currentValue < 10) {
+      numberField.value = ++currentValue;
+    }
   });
-};
+});
 
 // Récupération et affichage des commentaires du produit
 getData()
