@@ -87,7 +87,7 @@ async function getProductId() {
 
     if (matchingVariants.length > 0) {
       const selectedVariant = matchingVariants[0];
-      console.log(matchingVariants);
+      // console.log(matchingVariants);
       
       document.getElementById("productImg").src = selectedVariant.image;
     }
@@ -117,7 +117,7 @@ async function getProductId() {
          const selectedVariant = matchingVariants[0]; 
 
          document.getElementById("productImg").src = selectedVariant.image;
-         console.log(selectedVariant);
+        //  console.log(selectedVariant);
        }
      });
    });
@@ -137,17 +137,17 @@ async function getProductId() {
          const selectedVariant = matchingVariants[0]; 
          
          document.getElementById("productImg").src = selectedVariant.image;
-         console.log(selectedVariant);
+        //  console.log(selectedVariant);
        }
      });
    });
 
-   // Fonction pour obtenir la couleur actuellement sélectionnée
+// Fonction pour obtenir la couleur actuellement sélectionnée
    function getSelectedColor() {
      const selectedColorButton = document.querySelector(".btn.selected");
      return selectedColorButton ? selectedColorButton.dataset.color : null;
    }
-   // Fonction pour obtenir la taille actuellement sélectionnée
+// Fonction pour obtenir la taille actuellement sélectionnée
    function getSelectedSize() {
      const selectedSizeButton = document.querySelector(".btn-size.selected");
      return selectedSizeButton ? selectedSizeButton.dataset.size : null;
@@ -157,19 +157,68 @@ async function getProductId() {
    console.error(error);
  });
 
-// const decreaseBtn = document.getElementById("decreaseBtn");
-// const increaseBtn = document.getElementById("increaseBtn");
-// const numberField = document.getElementById("numberField");
-// // Fonction pour diminuer la valeur du champ
-// decreaseBtn.addEventListener("click", () => {
-//   let currentValue = parseInt(numberField.value);
-//   if (currentValue > 0) {
-//     numberField.value = --currentValue;
-//   }
-// });
+// Fonction pour la quantité du produit a acheter
+async function getQuantity() {
+  const decreaseBtn = document.getElementById("decreaseBtn");
+  const increaseBtn = document.getElementById("increaseBtn");
+  const numberField = document.getElementById("numberField");
 
-// // Fonction pour augmenter la valeur du champ
-// increaseBtn.addEventListener("click", () => {
-//   let currentValue = parseInt(numberField.value);
-//   numberField.value = ++currentValue;
-// });
+  decreaseBtn.addEventListener("click", () => {
+    let currentValue = parseInt(numberField.value);
+    if (currentValue > 0) {
+      numberField.value = --currentValue;
+    }
+  });
+
+  increaseBtn.addEventListener("click", () => {
+    let currentValue = parseInt(numberField.value);
+    numberField.value = ++currentValue;
+  });
+};
+
+// Récupération et affichage des commentaires du produit
+getData()
+ .then((productData) => {
+    const ProductComment = productData.reviews.map((review) => review.comment);
+    const CommentRate = productData.reviews.map((review) => review.rate);
+    const CommentName = "John Doe";
+
+    const CommentContainer = document.getElementById("CommentContainer");
+
+    ProductComment.forEach((comment, index) => {
+      const oneCommentContainer = document.createElement("div");
+      oneCommentContainer.classList.add("one-comment");
+
+      const commentElement = document.createElement("p");
+      commentElement.id = "comment";
+      commentElement.textContent = comment;
+      oneCommentContainer.appendChild(commentElement);
+
+      const rateElement = document.createElement("span");
+      rateElement.id = "CommentRate";
+      rateElement.textContent = CommentRate[index] + "/5";
+      oneCommentContainer.appendChild(rateElement);
+
+      const nameElement = document.createElement("span");
+      nameElement.id = "CommentName";
+      nameElement.textContent = CommentName;
+      oneCommentContainer.appendChild(nameElement);
+
+      CommentContainer.appendChild(oneCommentContainer);
+    });
+      const nbrEval = ProductComment.length; 
+      document.getElementById("nbreval").textContent = "(" + nbrEval + " avis)";
+      
+  });
+
+// Calcul de la moyenne des évaluations du produit
+getData()
+ .then((productData) => {
+    const CommentRate = productData.reviews.map((review) => review.rate);
+
+    const CommentContainer = document.getElementById("meval");
+
+    ProductComment.forEach((comment, index) => {
+    
+    });
+  });

@@ -30,6 +30,7 @@ h1 {
 
 h2 {
     font-size: var(--2xl);
+    text-align: center;
 }
 
 button {
@@ -73,7 +74,7 @@ input::-webkit-outer-spin-button,
 }
 
 .poduct--img-block:hover {
-    transform: skew(0deg, -8deg);
+    transform: skew(0deg, -10deg);
     transition: 300ms ease-in-out;
 }
 
@@ -82,8 +83,9 @@ input::-webkit-outer-spin-button,
     grid-template-columns: repeat(2, 1fr);
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 150px;
     padding: 20px;
+    transition: 350ms ease-in-out;
 }
 
 .product--option-block {
@@ -115,5 +117,6 @@ input::-webkit-outer-spin-button,
     }    
     .product--block {
         grid-template-columns: repeat(1, 1fr);
+        margin-bottom: 75px;
     }
 }
