@@ -72,6 +72,8 @@
     width: 100%;
     margin-bottom: 10px;
     font-size: var(--base);
+    font-family: var(--specific);
+    font-weight: bold;
 }
 
 .btn-white:hover {
