@@ -216,9 +216,5 @@ getData()
  .then((productData) => {
     const CommentRate = productData.reviews.map((review) => review.rate);
 
-    const CommentContainer = document.getElementById("meval");
-
-    ProductComment.forEach((comment, index) => {
-    
-    });
+    document.getElementById("meval").textContent = (CommentRate.reduce((a, b) => a + b, 0) / CommentRate.length).toFixed(1) + "/5";
   });
