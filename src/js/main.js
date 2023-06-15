@@ -7,12 +7,7 @@ async function getData() {
     request.onload = () => {
       if (request.status === 200) {
         const Data = JSON.parse(request.responseText);
-        // const titles = Data.title;
-        // const price = Data.price;
-        // const description = Data.description;
-        // const variants = Data.variants;
-        // const images = Data.variants.map((variant) => variant.image);
-
+        
         resolve(Data);
       } else {
         reject("Erreur lors de la récupération des données du produit");
@@ -23,139 +18,14 @@ async function getData() {
     };
     request.send();
   });
-}
+};
 
-// Test //
-// getData()
-//   .then((Data) => {
-//     console.log(Data);
-    
-//   })
-//   .catch((error) => {
-//     console.error(error);
+// async function getProductId() {
+//   return getData().then((productData) => {
+//     const productId = productData.id;
+//     return productId;
 //   });
-
-async function getProductId() {
-  return getData().then((productData) => {
-    const productId = productData.id;
-    return productId;
-  });
-}
-
-// Récupération du titre du produit
-  getData()
-  .then((productData) => {
-    const productTitle = productData.title;
-    document.getElementById("productTitle").textContent = productTitle;
-  })
-  .catch((error) => {
-    console.error(error);
-  });
-
-// Récupération du prix du produit
-  getData()
-  .then((productData) => {
-    const productPrice = productData.price;
-    document.getElementById("productPrice").textContent = productPrice + " €";
-  })
-  .catch((error) => {
-    console.error(error);
-  });
-
-// Récupération de la description du produit
-  getData()
-  .then((productData) => {
-    const productDescription = productData.description;
-    document.getElementById("productDescription").textContent = productDescription;
-  })
-  .catch((error) => {
-    console.error(error);
-  });
-
-// Récupération de l'img du produit
-  getData()
-  .then((productData) => {
-    const productColor = productData.variants.map((variant) => variant.color);
-    const productSize = productData.variants.map((variant) => variant.size);
-
-    const selectedColor = productColor[0]; 
-    const selectedSize = productSize[0]; 
-
-    const matchingVariants = productData.variants.filter(
-      (variant) => variant.color === selectedColor && variant.size === selectedSize
-    );
-
-    if (matchingVariants.length > 0) {
-      const selectedVariant = matchingVariants[0];
-      // console.log(matchingVariants);
-      
-      document.getElementById("productImg").src = selectedVariant.image;
-    }
-  })
-  .catch((error) => {
-    console.error(error);
-  });
-
-// Récupération des images du produit selon la taille et la couleur
- getData()
- .then((productData) => {
-   const colorButtons = document.querySelectorAll(".btn");
-   const sizeButtons = document.querySelectorAll(".btn-size");
-
-   colorButtons.forEach((button) => {
-     button.addEventListener("click", () => {
-      colorButtons.forEach((btn) => btn.classList.remove("selected"));
-      button.classList.add("selected");
-
-       const selectedColor = button.dataset.color;
-      
-       const matchingVariants = productData.variants.filter(
-         (variant) => variant.color === selectedColor && variant.size === getSelectedSize()
-       );
-
-       if (matchingVariants.length > 0) {
-         const selectedVariant = matchingVariants[0]; 
-
-         document.getElementById("productImg").src = selectedVariant.image;
-        //  console.log(selectedVariant);
-       }
-     });
-   });
-
-   sizeButtons.forEach((button) => {
-     button.addEventListener("click", () => {
-      sizeButtons.forEach((btn) => btn.classList.remove("selected"));
-      button.classList.add("selected");
-
-       const selectedSize = button.dataset.size;
-
-       const matchingVariants = productData.variants.filter(
-         (variant) => variant.size === selectedSize && variant.color === getSelectedColor()
-       );
-        
-       if (matchingVariants.length > 0) {
-         const selectedVariant = matchingVariants[0]; 
-         
-         document.getElementById("productImg").src = selectedVariant.image;
-        //  console.log(selectedVariant);
-       }
-     });
-   });
-
-// Fonction pour obtenir la couleur actuellement sélectionnée
-   function getSelectedColor() {
-     const selectedColorButton = document.querySelector(".btn.selected");
-     return selectedColorButton ? selectedColorButton.dataset.color : null;
-   }
-// Fonction pour obtenir la taille actuellement sélectionnée
-   function getSelectedSize() {
-     const selectedSizeButton = document.querySelector(".btn-size.selected");
-     return selectedSizeButton ? selectedSizeButton.dataset.size : null;
-    }
- })
- .catch((error) => {
-   console.error(error);
- });
+// }
 
 // Fonction pour la quantité du produit a acheter
 document.addEventListener("DOMContentLoaded", () => {
@@ -176,6 +46,66 @@ document.addEventListener("DOMContentLoaded", () => {
       numberField.value = ++currentValue;
     }
   });
+});
+
+getData()
+  .then(productData => {
+    const productTitle = productData.title;
+    const productPrice = productData.price;
+    const productDescription = productData.description;
+    const productVariants = productData.variants;
+
+    document.getElementById("productTitle").textContent = productTitle;
+    document.getElementById("productPrice").textContent = productPrice + " €";
+    document.getElementById("productDescription").textContent = productDescription;
+
+    const colorButtons = document.querySelectorAll(".btn");
+    const sizeButtons = document.querySelectorAll(".btn-size");
+
+    colorButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        colorButtons.forEach(btn => btn.classList.remove("selected"));
+        button.classList.add("selected");
+
+        updateProductImage();
+      });
+    });
+
+    sizeButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        sizeButtons.forEach(btn => btn.classList.remove("selected"));
+        button.classList.add("selected");
+
+        updateProductImage();
+      });
+    });
+
+    // Récupération de l'image du produit en fonction de la couleur et de la taille sélectionnée
+    function updateProductImage() {
+      const selectedColor = getSelectedColor();
+      const selectedSize = getSelectedSize();
+
+      const matchingVariant = productVariants.find(
+        variant => variant.color === selectedColor && variant.size === selectedSize
+      );
+
+      if (matchingVariant) {
+        document.getElementById("productImg").src = matchingVariant.image;
+      }
+    }
+
+    updateProductImage();
+
+    // Récupération de la couleur et de la taille sélectionnée
+    function getSelectedColor() {
+      const selectedColorButton = document.querySelector(".btn.selected");
+      return selectedColorButton ? selectedColorButton.dataset.color : null;
+    }
+
+    function getSelectedSize() {
+      const selectedSizeButton = document.querySelector(".btn-size.selected");
+      return selectedSizeButton ? selectedSizeButton.dataset.size : null;
+    }
 });
 
 // Récupération et affichage des commentaires du produit
@@ -207,16 +137,9 @@ getData()
       oneCommentContainer.appendChild(nameElement);
 
       CommentContainer.appendChild(oneCommentContainer);
+
+      document.getElementById("meval").textContent = (CommentRate.reduce((a, b) => a + b, 0) / CommentRate.length).toFixed(1) + "/5";
     });
       const nbrEval = ProductComment.length; 
       document.getElementById("nbreval").textContent = "(" + nbrEval + " avis)";
-      
-  });
-
-// Calcul de la moyenne des évaluations du produit
-getData()
- .then((productData) => {
-    const CommentRate = productData.reviews.map((review) => review.rate);
-
-    document.getElementById("meval").textContent = (CommentRate.reduce((a, b) => a + b, 0) / CommentRate.length).toFixed(1) + "/5";
-  });
+});
