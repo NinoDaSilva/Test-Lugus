@@ -1,5 +1,9 @@
 .btn,
 .btn-size,
+.btn.selected,
+.btn-size.selected,
+.btn:hover,
+.btn-size:hover,
 .btn-white,
 .btn-blue,
 .quantity {
@@ -32,10 +36,8 @@
     padding-inline: 20px;
 }
 
-.btn.selected,
-.btn:hover,
-.btn-size.selected,
-.btn-size:hover,
+.btn,
+.btn-size,
 .btn-white,
 .btn-blue:hover {
     background-color: var(--blanc);
