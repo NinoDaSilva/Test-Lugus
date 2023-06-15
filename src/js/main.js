@@ -62,6 +62,7 @@ getData()
     const colorButtons = document.querySelectorAll(".btn");
     const sizeButtons = document.querySelectorAll(".btn-size");
 
+    // Boutons de sélection de la couleur
     colorButtons.forEach(button => {
       button.addEventListener("click", () => {
         colorButtons.forEach(btn => btn.classList.remove("selected"));
@@ -71,6 +72,7 @@ getData()
       });
     });
 
+    // Boutons de sélection de la taille
     sizeButtons.forEach(button => {
       button.addEventListener("click", () => {
         sizeButtons.forEach(btn => btn.classList.remove("selected"));
